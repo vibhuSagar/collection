@@ -1,0 +1,87 @@
+package com.vibhu.mapexample;
+
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.time.LocalDateTime;
+
+public class MapExample {
+
+	public static ArrayList<Employee> searchCity(String city, ArrayList<Employee> al) {
+
+		ArrayList<Employee> search = new ArrayList<Employee>();
+		for (Employee i : al) {
+			if (city.equalsIgnoreCase(i.getCity())) {
+				search.add(i);
+
+			}
+
+		}
+
+		return search;
+
+	}
+
+	public static void main(String[] args) {
+		
+
+		ArrayList<Employee> list = new ArrayList<Employee>();
+
+		list.add(new Employee("James", 4000.00, "delhi", LocalDateTime.of(1997, 7, 22, 11, 00)));
+		list.add(new Employee("Harry", 8000.00, "pune", LocalDateTime.of(1994, 5, 29, 12, 00)));
+		list.add(new Employee("Ron", 2200.00, "mumbai", LocalDateTime.of(1993, 11, 22, 11, 00)));
+		list.add(new Employee("Lily", 4400.00, "mumbai", LocalDateTime.of(1995, 7, 11, 11, 00)));
+		list.add(new Employee("Lisa", 5000.00, "delhi", LocalDateTime.of(1997, 7, 22, 11, 00)));
+		list.add(new Employee("Tim", 9000.00, "delhi", LocalDateTime.of(1997, 6, 9, 11, 00)));
+		list.add(new Employee("Bob", 4100.00, "bangalore", LocalDateTime.of(1997, 7, 15, 11, 00)));
+
+		Collections.sort(list, new Comparator<Employee>() {
+
+			@Override
+			public int compare(Employee o1, Employee o2) {
+
+				return o1.getDob().compareTo(o2.getDob());
+			}
+		});
+
+		System.out.println("Sorted According to Date of birth");
+		System.out.println("===================================");
+
+		for (Employee i : list) {
+			System.out.println(i.getDob());
+
+		}
+
+		System.out.println("************************************");
+
+		//
+		Collections.sort(list, new Comparator<Employee>() {
+
+			@Override
+			public int compare(Employee o1, Employee o2) {
+
+				return Double.compare(o2.getSalary(), o1.getSalary());
+			}
+		});
+
+		System.out.println("Sorted According to Salary");
+		System.out.println("===================================");
+
+		for (Employee i : list) {
+			System.out.println(i.getSalary());
+
+		}
+		System.out.println("************************************");
+		
+		ArrayList<Employee> emp= searchCity("delhi",list);
+		System.out.println(emp);
+		
+		
+		
+		
+		
+
+	}
+
+}
